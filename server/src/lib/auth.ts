@@ -73,6 +73,16 @@ export const auth = betterAuth({
       console.error("[better-auth]", error);
     },
   },
+  advanced: {
+    crossSubDomainCookies: {
+      enabled: false, // not needed — you're cross-*site*, not cross-*subdomain*
+    },
+    defaultCookieAttributes: {
+      sameSite: "none",
+      secure: true,
+      partitioned: true, // needed for Chrome's CHIPS in third-party-cookie contexts
+    },
+  },
 });
 
 export type Auth = typeof auth;
