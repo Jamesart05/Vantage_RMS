@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-[#F6F9F7] text-ink dark:bg-[#0B1512] dark:text-slate-100;
+  font-feature-settings: "tnum" 1;
+}
+
+::selection {
+  @apply bg-brand-400 text-white;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-slate-200 dark:bg-white/10;
+}
+
+:focus-visible {
+  @apply outline outline-2 outline-offset-2 outline-brand-500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
