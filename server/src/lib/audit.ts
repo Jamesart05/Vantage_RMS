@@ -1,6 +1,6 @@
 import type { Request } from "express";
 import { prisma } from "./prisma";
-import type { Prisma, PrismaClient } from "../../generated/prisma";
+import { Prisma, PrismaClient } from "../../generated/prisma/client";
 
 interface AuditInput {
   organizationId: string;

@@ -12,8 +12,11 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "declaration": false,
-    "sourceMap": true
+    "sourceMap": true,
+    "paths": {
+      "@prisma/client": ["./generated/prisma/index.js"]
+    }
   },
-  "include": ["src", "generated"],
+  "include": ["src/**/*", "generated/**/*"],
   "exclude": ["node_modules"]
 }
