@@ -15,9 +15,10 @@ export function createApp() {
 
   app.use(
     cors({
-      origin: trustedOrigins,
+      origin: ["https://vantage-rms.vercel.app", "http://localhost:3000"],
+
       credentials: true,
-    })
+    }),
   );
   app.use(helmet());
   app.use(morgan(env.NODE_ENV === "development" ? "dev" : "combined"));
@@ -31,7 +32,9 @@ export function createApp() {
   app.use(express.json({ limit: "2mb" }));
   app.use(express.urlencoded({ extended: true }));
 
-  app.get("/health", (_req, res) => res.json({ status: "ok", timestamp: new Date().toISOString() }));
+  app.get("/health", (_req, res) =>
+    res.json({ status: "ok", timestamp: new Date().toISOString() }),
+  );
 
   app.use("/api/v1", apiRouter);
 
