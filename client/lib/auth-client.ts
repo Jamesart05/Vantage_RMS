@@ -5,7 +5,7 @@ import { organizationClient } from "better-auth/client/plugins";
 import { API_BASE_URL } from "./env";
 
 export const authClient = createAuthClient({
-  baseURL: `${API_BASE_URL}/api/auth`,
+  baseURL: `${API_BASE_URL}/api/auth` || (typeof window !== "undefined" ? window.location.origin : "https://vantage-rms-backend.onrender.com"),
   plugins: [organizationClient()],
 });
 

@@ -6,7 +6,7 @@ import { env, trustedOrigins } from "../config/env";
 import { ac, roles } from "./permissions";
 
 export const auth = betterAuth({
-  baseURL: env.BETTER_AUTH_URL,
+  baseURL: env.BETTER_AUTH_URL || "https://vantage-rms-backend.onrender.com",
   secret: env.BETTER_AUTH_SECRET,
   trustedOrigins,
 
