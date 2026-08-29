@@ -26,11 +26,20 @@ interface Envelope<T> {
   error?: { message: string; details?: unknown };
 }
 
+function getBaseApiUrl() {
+  if (typeof window !== "undefined") {
+    // In the browser: stay on current origin so session cookies are attached automatically
+    return window.location.origin;
+  }
+  // SSR / Static Prerender fallback
+  return process.env.NEXT_PUBLIC_BETTER_AUTH_URL || "https://vantage-rms.vercel.app";
+}
+
 async function request<T>(
   path: string,
   options: { method?: string; body?: unknown; params?: Record<string, string | number | boolean | undefined> } = {}
 ): Promise<{ data: T; meta?: ApiMeta }> {
-  const url = new URL(`${API_BASE_URL}/api/v1${path}`);
+  const url = new URL(`${getBaseApiUrl()}/api/v1${path}`);
   if (options.params) {
     for (const [key, value] of Object.entries(options.params)) {
       if (value !== undefined && value !== "") url.searchParams.set(key, String(value));
